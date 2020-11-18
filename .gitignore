@@ -5,6 +5,7 @@ __pycache__/
 
 secrets.json
 .idea/
+env/
 
 # C extensions
 *.so
