@@ -9,8 +9,8 @@
 
 .content-wrapper {
     width: 50%;
-    height: 75%;
-
+    padding-bottom: 16px;
+    height: fit-content;
 	position:absolute;
     left:0; right:0;
     top:0; bottom:0;
@@ -21,4 +21,17 @@
 
 .title {
     text-align: center;
+}
+
+.poem {
+    display: table;
+    margin: 0 auto;
+}
+
+#poetryWrapper {
+    margin-top: 8px;
+    align-content: center;
+    background-color: #4e555b;
+    color: #efef;
+    border-radius: 6px;
 }

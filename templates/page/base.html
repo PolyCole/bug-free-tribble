@@ -4,13 +4,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bulletin Board</title>
+    <title>Pastoral Poetry</title>
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'css/particles.css' %}">
 
 </head>
-<body style="width:200vh; height:200vh; overflow:hidden;">
+<body style="width:200vh; height:200vh; overflow-x:hidden;">
 <div class="particle-wrapper">
     <div id="particles-js" style="position:fixed;">
         <div class="content-wrapper">
@@ -30,7 +30,7 @@
                 <div class="container" style="align-content: center;">
                     <div class="btn btn-primary" onclick="creatediv()">Generate Poetry</div>
                 </div>
-                <div id="tid"></div>
+                <div id="poetryWrapper" class="container"></div>
 
             </div>
 
@@ -40,22 +40,30 @@
 <script src="{% static 'js/particles.js' %}"></script>
 <script src="{% static 'js/app.js' %}"></script>
 <script>
-function creatediv(){
-    $.ajax({
-        url: "static/files/1.txt",
-        async: false,   // asynchronous request? (synchronous requests are discouraged...)
-        cache: false,   // with this, you can force the browser to not make cache of the retrieved data
-        dataType: "text",  // jQuery will infer this, but you can set explicitly
-        success: function( data, textStatus, jqXHR ) {
-            var resourceContent = data; // can be a global variable too...
-            mNewObj = document.createElement('span');
-            mNewObj.id = "poetry";
-            mNewObj.innerHTML = resourceContent;
-            document.getElementById("tid").appendChild(mNewObj);
-        }
-    });
+async function creatediv(){
+    const poetryDiv = document.getElementById("poetry");
+    if(poetryDiv != undefined) {
+        poetryDiv.remove();
+    }
+
+    const poem = await getPoetry();
+    let newPoem = document.createElement('span');
+    newPoem.className="poem";
+    newPoem.id = "poetry";
+    newPoem.innerHTML = poem;
+    document.getElementById("poetryWrapper").appendChild(newPoem);
 }
 
+async function getPoetry() {
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    const resourceurl = "https://pastoral-poetry.s3.amazonaws.com/1.txt";
+
+    const response = await fetch(proxyurl + resourceurl)
+        .then(response => response.text());
+
+    console.log(response);
+    return response;
+}
 </script>
 
 </body>
