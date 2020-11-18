@@ -5,21 +5,58 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bulletin Board</title>
-    <link rel="stylesheet" href="{% static 'css/base.css'%}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.css'%}">
-    <link rel="stylesheet" href="{% static 'css/particles.css'%}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/particles.css' %}">
 
 </head>
-<body>
-    <div class="particle-wrapper">
-        <div id="particles-js" style="position:fixed;">
-                <div class="content-wrapper">
-                    <div class="col-lg title"><h1>Central Content</h1></div>
+<body style="width:200vh; height:200vh; overflow:hidden;">
+<div class="particle-wrapper">
+    <div id="particles-js" style="position:fixed;">
+        <div class="content-wrapper">
+            <div class="col-lg title" style="margin-top: 8px;"><h1>Literary Inquiry: The Pastoral</h1></div>
+            <div class="col-md">
+                <p>For my final project in Literary Inquiry, I decided to do something a little bit different. All quarter,
+                we had been discussing different pastoral elements found in text. In one of the novels we read, <em>Do
+                    Androids Dream of Electric Sheep</em> by Philip Dick, there was a moment when one of the characters,
+                John Isidore begins to theorize about how a certain talkshow host named Buster Friendly, has the time
+                to produce his 24/7 audio and video show.</p>
+
+                <p>The answer, to any human reading the novel, is that Buster Friendly is an android, tasked solely
+                with generating content to put on air during his show. This section got me wondering, is it possible to
+                have a computer generate pastoral content in our world today? So I got to researching. I found a tutorial
+                on TensorFlow's website about generating text using a Recurrent Neural Network, and began my proceedings there.</p>
+
+                <div class="container" style="align-content: center;">
+                    <div class="btn btn-primary" onclick="creatediv()">Generate Poetry</div>
                 </div>
+                <div id="tid"></div>
+
+            </div>
+
         </div>
     </div>
-    <script src="{% static 'js/particles.js'%}"></script>
-    <script src="{% static 'js/app.js'%}"></script>
+</div>
+<script src="{% static 'js/particles.js' %}"></script>
+<script src="{% static 'js/app.js' %}"></script>
+<script>
+function creatediv(){
+    $.ajax({
+        url: "static/files/1.txt",
+        async: false,   // asynchronous request? (synchronous requests are discouraged...)
+        cache: false,   // with this, you can force the browser to not make cache of the retrieved data
+        dataType: "text",  // jQuery will infer this, but you can set explicitly
+        success: function( data, textStatus, jqXHR ) {
+            var resourceContent = data; // can be a global variable too...
+            mNewObj = document.createElement('span');
+            mNewObj.id = "poetry";
+            mNewObj.innerHTML = resourceContent;
+            document.getElementById("tid").appendChild(mNewObj);
+        }
+    });
+}
+
+</script>
 
 </body>
 </html>
