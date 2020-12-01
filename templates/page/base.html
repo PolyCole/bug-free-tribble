@@ -179,8 +179,13 @@
 
     async function getPoetry() {
         const proxyurl = "https://cors-anywhere.herokuapp.com/";
-        const resourceurl = "https://pastoral-poetry.s3.amazonaws.com/1.txt";
 
+        const sample = Math.trunc((Math.random() * (272)) + 1);
+        console.log("Sample selected: " + sample);
+
+        const resourceurl = "https://pastoral-poetry.s3.amazonaws.com/" + sample + ".txt";
+        console.log("Sample url: " + resourceurl);
+        
         const response = await fetch(proxyurl + resourceurl)
             .then(response => response.text());
 
