@@ -34,4 +34,14 @@
     background-color: #4e555b;
     color: #efef;
     border-radius: 6px;
+    padding: 4px;
+}
+
+#poetry {
+    margin-top: 8px;
+    align-content: center;
+    background-color: #4e555b;
+    color: #efef;
+    border-radius: 6px;
+    padding: 4px;
 }

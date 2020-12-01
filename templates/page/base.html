@@ -58,6 +58,13 @@
                         </p>
 
                         <p>
+                            There is some interesting behavior here, seeing as with some of the samples, the model
+                            doesn't produce 1000 characters, even though its asked. I wonder if this has something to
+                            do with getting caught in a loop where it just generates spaceS? Will be necessary to
+                            investigate.
+                        </p>
+
+                        <p>
                             If you see a temperature value that's closer to 1.0, it means the generated text is more
                             experimental. Temperature values that are closer to 0.0 are more probabilistic, meaning that
                             the model relies more heavily on the calculated model to generate text.
@@ -123,7 +130,7 @@
                             The ML Algorithm itself was heavily based on the <a
                                 href="https://www.tensorflow.org/tutorials/text/text_generation" target="_blank">RNN
                             Text
-                            Gen</a> tutorial hosted on the TensoorFlow website, with a few minor tweaks to fit the
+                            Gen</a> tutorial hosted on the TensorFlow website, with a few minor tweaks to fit the
                             specific use case.
                         </p>
 
@@ -150,6 +157,46 @@
                     <div class="col-md">
                         <h4 style="margin-top: 10px;">Analysis</h4>
                         <p>Again, don't judge me on this, I'm a CS guy, not a poet.</p>
+
+                        <p>The first poem I've selected is this one:</p>
+                        <div class="container">
+                            <span id="poetry">And as the world is still a tree, a noise and story in the sink of the earth's soul,</span>
+                        </div>
+                        <p>This poem is particularly interesting to me and has some clear reference to the pastoral.
+                            The poem begins by alluding to the world actually being a tree, then using the language
+                            "noise and story". This line made me think that the author (haha) is alluding to a family
+                            tree as opposed to a literal tree. I say this because thinking of noise and story
+                            immediately
+                            conjures up the image of a noisy family gathering, with shared oral stories and a human
+                            structured tree of relatives and relations. Perhaps this isn't the inherent meaning though,
+                            because calling family trees the "sink of the earth's soul" is a rather narcissistic
+                            viewpoint.
+                        </p>
+
+                        <div class="container">
+                            <span id="poetry">Return to the Salmon Days of manifest and storms, And soon the sea was shattering there all in time, And the years later, when people Art thine between thee for being strong, so he that launchoused her in marker I've trying to go at the mood, only the shadow of the little tongue where they were huddled so as they met a book in the sea</span>
+                        </div>
+                        <p>
+                            I haven't too much to say about this one, but I really like the way it begins. There's a
+                            power to it that I think parallels what's experienced by sailors at sea. Maybe I'm reading
+                            into it but for some reason this one resonated with me.
+                        </p>
+                        <div class="container">
+                            <span id="poetry">Out of the dead and the ground of the Mongon Strike and fall, to the street loose the soldier heat in the bed and the fact that sang From the mountain shade of the moon that starts by the steel and strange and struggle;</span>
+                        </div>
+                        <p>
+                            Again, there's a little section of this that I'd like to focus on. The final line talking
+                            about the Mountain Shade was a line that I really enjoyed. I loved the image it created of a
+                            moon and a mountain and the shadows that fall in moonlight. Was very much a fan of it.
+                        </p>
+
+                        <p>
+                            So clearly, the algorithm isn't perfect yet. It's grasping some concepts of rhyming, but it
+                            lacks any central theme. Overall though, I'm very proud with the way this project came out
+                            and the content it was able to create. Perhaps moving forward I'll need to return to this
+                            project in a few years and see if I can't make it write even better poetry :)
+                        </p>
+
                     </div>
                 </div>
             </div>
@@ -185,7 +232,7 @@
 
         const resourceurl = "https://pastoral-poetry.s3.amazonaws.com/" + sample + ".txt";
         console.log("Sample url: " + resourceurl);
-        
+
         const response = await fetch(proxyurl + resourceurl)
             .then(response => response.text());
 
